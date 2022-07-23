@@ -1,32 +1,31 @@
 <template>
   <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view/>
+    <UserLayout v-if="whiteList.includes($route.name)" />
+    <MainLayout v-else />
   </div>
 </template>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
 
-nav {
-  padding: 30px;
-}
+</style>
+<script>
+import MainLayout from "@/components/MainLayout";
+import UserLayout from "@/UserLayout/UserLayout";
+import whiteList from "@/router/whiteList";
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
+export default {
+  components: {UserLayout, MainLayout},
+  data() {
+    return {
+      whiteList
+    }
+  }
 }
-
-nav a.router-link-exact-active {
-  color: #42b983;
+</script>
+<style>
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 </style>
